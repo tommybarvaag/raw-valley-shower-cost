@@ -1,13 +1,21 @@
 import type { GetServerSideProps, NextPage } from "next";
+import useSwr from "swr";
 import { getCurrentEnergyPriceForHome, TibberHome } from "../lib/tibber";
 import { getShowerPrice } from "../utils/electricalCalculationUtils";
+import fetcher from "../utils/swrUtils";
 
 type HomeProps = {
   children: React.ReactNode;
-  currentEnergyPrice: TibberHome;
+  currentEnergyPriceServerData: TibberHome;
 };
 
-const Home: NextPage = ({ currentEnergyPrice }: HomeProps) => {
+const Home: NextPage = ({ currentEnergyPriceServerData }: HomeProps) => {
+  const { data: currentEnergyPrice } = useSwr<TibberHome>("/api/tibber/current-energy-price", fetcher, {
+    fallbackData: currentEnergyPriceServerData,
+    refreshInterval: 300000,
+    revalidateOnMount: true,
+  });
+
   return (
     <>
       <div
@@ -32,7 +40,7 @@ const Home: NextPage = ({ currentEnergyPrice }: HomeProps) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
-      currentEnergyPrice: await getCurrentEnergyPriceForHome(),
+      currentEnergyPriceServerData: await getCurrentEnergyPriceForHome(),
     },
   };
 };
