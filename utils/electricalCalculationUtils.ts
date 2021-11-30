@@ -1,4 +1,4 @@
-import { ENERGY_CONSTANTS } from "../constants/energyConstants";
+import { ENERGY_CONSTANTS } from "@/constants/energyConstants";
 import { formatCurrency } from "./currencyFormat";
 
 // Calculates shower price based on following inputs
