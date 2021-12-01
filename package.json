@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-id": "^0.1.1",
     "@radix-ui/react-slider": "^0.1.1",
     "@stitches/react": "^1.2.5",
     "lodash.merge": "^4.6.2",

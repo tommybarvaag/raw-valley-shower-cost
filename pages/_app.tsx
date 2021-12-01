@@ -1,3 +1,4 @@
+import { IdProvider } from "@radix-ui/react-id";
 import type { AppProps } from "next/app";
 import { globalCss } from "stitches.config";
 
@@ -12,6 +13,7 @@ const globalStyles = globalCss({
     overflowX: "hidden"
   },
   body: {
+    // https://uigradients.com/#CrimsonTide
     background: "linear-gradient(to right, #C6426E, #642B73)",
     color: "$text",
     fontFamily: "$default",
@@ -30,7 +32,11 @@ const globalStyles = globalCss({
 function MyApp({ Component, pageProps }: AppProps) {
   globalStyles();
 
-  return <Component {...pageProps} />;
+  return (
+    <IdProvider>
+      <Component {...pageProps} />
+    </IdProvider>
+  );
 }
 
 export default MyApp;
