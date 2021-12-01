@@ -1,4 +1,3 @@
-import { ShowerPriceCalculator } from "./shower-price";
 import {
   Box,
   Flex,
@@ -12,7 +11,7 @@ import {
   RangeFieldTrack,
   RangeFieldValue,
   Text
-} from "./ui";
+} from "./components";
 
 export {
   Box,
@@ -26,6 +25,5 @@ export {
   RangeFieldThumb,
   RangeFieldTrack,
   RangeFieldValue,
-  Text,
-  ShowerPriceCalculator
+  Text
 };

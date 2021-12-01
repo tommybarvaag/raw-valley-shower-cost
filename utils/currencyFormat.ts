@@ -3,9 +3,9 @@
 // using sv-SE as a workaround for now
 const currencyFormatter = new Intl.NumberFormat("sv-SE", {
   style: "currency",
-  currency: "NOK",
-  currencyDisplay: "code",
-  minimumFractionDigits: 2,
+  currency: "SEK",
+  currencyDisplay: "symbol",
+  minimumFractionDigits: 2
 });
 
 export const formatCurrency = (number: number): string => currencyFormatter.format(number);

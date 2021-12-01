@@ -64,7 +64,7 @@ const currentEnergyPriceQuery = {
     }
     `,
   variables: null,
-  operationName: null,
+  operationName: null
 };
 
 export const getCurrentEnergyPrice = async (): Promise<TibberCurrentEnergyPrice> => {
@@ -74,9 +74,9 @@ export const getCurrentEnergyPrice = async (): Promise<TibberCurrentEnergyPrice>
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.TIBBER_ACCESS_TOKEN}`,
+      Authorization: `Bearer ${process.env.TIBBER_ACCESS_TOKEN}`
     },
-    body: JSON.stringify(currentEnergyPriceQuery),
+    body: JSON.stringify(currentEnergyPriceQuery)
   });
 
   const data: TibberCurrentEnergyPrice = await res.json();
@@ -87,7 +87,9 @@ export const getCurrentEnergyPrice = async (): Promise<TibberCurrentEnergyPrice>
 export const getCurrentEnergyPriceForHome = async (homeId?: string): Promise<TibberHome> => {
   const currentEnergyPrice: TibberCurrentEnergyPrice = await getCurrentEnergyPrice();
 
-  const home: TibberHome = currentEnergyPrice?.data?.viewer?.homes?.find((tibberHome: TibberHome) => tibberHome.id === (homeId ?? process.env.TIBBER_HOME_ID));
+  const home: TibberHome = currentEnergyPrice?.data?.viewer?.homes?.find(
+    (tibberHome: TibberHome) => tibberHome.id === (homeId ?? process.env.TIBBER_HOME_ID)
+  );
 
   return home;
 };
